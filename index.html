@@ -1,0 +1,969 @@
+{\rtf1\ansi\ansicpg936\cocoartf2821
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab560
+\pard\pardeftab560\slleading80\partightenfactor0
+
+\f0\fs26\fsmilli13090 \cf0 <!DOCTYPE html>\
+<html lang="zh-CN">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">\
+    <title>\uc0\u25968 \u23383 \u38144 \u21806 \u31649 \u29702 \u31995 \u32479 </title>\
+    <style>\
+        *\{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;\}\
+        body\{padding:6px;font-size:13px;line-height:1.3;color:#333;background-color:#f5f5f5;\}\
+        h1\{font-size:1.2rem;margin:4px 0;color:#2c3e50;text-align:center;\}\
+        textarea\{width:100%;height:80px;padding:6px;border:1px solid #ddd;border-radius:3px;font-size:13px;margin-bottom:6px;resize:none;\}\
+        button\{width:100%;padding:8px;background-color:#07c160;color:white;border:none;border-radius:4px;font-size:14px;margin-bottom:6px;\}\
+        .summary\{background-color:#fff;padding:6px;border-radius:3px;margin-bottom:4px;font-size:12px;box-shadow:0 1px 1px rgba(0,0,0,0.1);\}\
+        .summary-row\{display:flex;justify-content:space-between;margin-bottom:2px;\}\
+        .highlight\{font-weight:bold;\}\
+        .safe\{color:#07c160;\}\
+        .danger\{color:#e74c3c;\}\
+        .warning\{color:#ff9800;\}\
+        .stats-container\{margin-bottom:6px;\}\
+        .amount-group\{margin-bottom:4px;border:1px solid #eaeaea;border-radius:3px;overflow:hidden;background-color:#fff;\}\
+        .amount-header\{padding:4px 5px;font-size:11px;display:flex;justify-content:space-between;align-items:center;\}\
+        .high-risk-header\{background-color:#ffebee;\}\
+        .medium-risk-header\{background-color:#fff8e1;\}\
+        .safe-header\{background-color:#e8f5e9;\}\
+        .unsold-header\{background-color:#f5f5f5;\}\
+        .numbers-grid\{display:flex;flex-wrap:wrap;gap:3px;padding:4px;\}\
+        .number-item\{width:calc(20% - 3px);padding:2px;border-radius:2px;font-size:11px;text-align:center;display:flex;flex-direction:column;\}\
+        .number\{font-weight:bold;font-size:12px;\}\
+        .amount\{font-size:10px;color:#666;\}\
+        .high-risk-item\{background-color:#ffebee;border:1px solid #ef9a9a;\}\
+        .medium-risk-item\{background-color:#fff8e1;border:1px solid #ffe082;\}\
+        .safe-item\{background-color:#e8f5e9;border:1px solid #a5d6a7;\}\
+        .unsold-item\{background-color:#f5f5f5;border:1px solid #e0e0e0;\}\
+        .section-title\{font-size:12px;font-weight:bold;margin:6px 0 3px;color:#555;\}\
+        .no-data\{text-align:center;padding:6px;color:#999;font-size:11px;\}\
+        .group-total\{font-weight:bold;margin-top:2px;text-align:right;padding-right:4px;font-size:11px;\}\
+        .high-risk-total\{color:#e74c3c;\}\
+        .medium-risk-total\{color:#ff9800;\}\
+        .safe-total\{color:#07c160;\}\
+        .unsold-total\{color:#9e9e9e;\}\
+        .copy-btn\{background-color:#4285f4;color:white;border:none;border-radius:2px;padding:2px 5px;font-size:10px;cursor:pointer;margin-left:4px;\}\
+        .optimized-solution\{margin-top:8px;border:1px solid #eaeaea;border-radius:3px;padding:6px;background-color:#fff;box-shadow:0 1px 1px rgba(0,0,0,0.1);\}\
+        .optimized-header\{font-weight:bold;margin-bottom:4px;color:#1a73e8;font-size:12px;\}\
+        .strategy-item\{margin-bottom:4px;font-size:11px;padding:3px;background-color:#f8f9fa;border-radius:2px;\}\
+        .strategy-highlight\{font-weight:bold;color:#d32f2f;\}\
+        .strategy-profit\{color:#388e3c;font-weight:bold;\}\
+        .strategy-loss\{color:#e64a19;font-weight:bold;\}\
+        .strategy-detail\{margin-left:6px;color:#555;font-size:11px;margin-bottom:2px;\}\
+        .number-list\{display:flex;flex-wrap:wrap;gap:3px;margin:4px 0;\}\
+        .number-tag\{padding:1px 4px;background-color:#e1f5fe;border-radius:2px;font-size:10px;\}\
+        .financial-summary\{margin-top:6px;padding:6px;background-color:#f9f9f9;border-radius:3px;border:1px solid #eee;\}\
+        .financial-row\{display:flex;justify-content:space-between;margin-bottom:3px;font-size:11px;\}\
+        .copy-success\{position:fixed;top:10px;left:50%;transform:translateX(-50%);background-color:#07c160;color:white;padding:4px 8px;border-radius:3px;z-index:1000;display:none;font-size:11px;box-shadow:0 1px 3px rgba(0,0,0,0.2);\}\
+        .profit-loss\{font-weight:bold;margin-top:4px;padding:4px;border-radius:3px;text-align:center;font-size:11px;\}\
+        .net-profit\{background-color:#e8f5e9;color:#388e3c;\}\
+        .net-loss\{background-color:#ffebee;color:#e74c3c;\}\
+        .hidden\{display:none;\}\
+        .copy-all-btn\{background-color:#ff5722;color:white;border:none;border-radius:2px;padding:2px 5px;font-size:10px;cursor:pointer;margin-left:4px;\}\
+        .tab-container\{display:flex;margin-bottom:6px;\}\
+        .tab\{flex:1;text-align:center;padding:6px;background:#eee;border:1px solid #ddd;cursor:pointer;\}\
+        .tab.active\{background:#fff;border-bottom:2px solid #07c160;font-weight:bold;\}\
+        .tab-content\{display:none;\}\
+        .tab-content.active\{display:block;\}\
+        .toggle-btn\{background-color:#4285f4;color:white;border:none;border-radius:2px;padding:2px 5px;font-size:10px;cursor:pointer;margin-left:4px;\}\
+        .conversion-result\{margin-top:8px;border:1px solid #eaeaea;border-radius:3px;padding:6px;background-color:#fff;box-shadow:0 1px 1px rgba(0,0,0,0.1);\}\
+        .conversion-header\{font-weight:bold;margin-bottom:4px;color:#1a73e8;font-size:12px;display:flex;justify-content:space-between;align-items:center;\}\
+        .conversion-content\{white-space:pre-wrap;font-size:11px;\}\
+        .error\{color:red;\}\
+        .conversion-actions\{display:flex;justify-content:flex-end;margin-top:4px;\}\
+    </style>\
+</head>\
+<body>\
+    <h1>\uc0\u25968 \u23383 \u38144 \u21806 \u31649 \u29702 \u31995 \u32479 </h1>\
+    <textarea id="salesData" placeholder="\uc0\u36755 \u20837 \u38144 \u21806 \u25968 \u25454 \u65292 \u20363 \u22914 \u65306 \
+04-09-12-13\uc0\u21508 200\u31859 \
+22,34,46\uc0\u21508 20\u31859 "></textarea>\
+    <button onclick="processSalesData()">\uc0\u20998 \u26512 \u38144 \u21806 \u25968 \u25454 </button>\
+    \
+    <div id="results" class="hidden">\
+        <div class="tab-container">\
+            <div class="tab active" onclick="switchTab('fixedTransfer')">\uc0\u22266 \u23450 \u36716 \u20986 </div>\
+            <div class="tab" onclick="switchTab('fullPayout')">\uc0\u20840 \u39069 \u36180 \u20184 </div>\
+        </div>\
+        \
+        <div id="fixedTransfer" class="tab-content active">\
+            <div id="summary" class="summary"></div>\
+            \
+            <div class="section-title">\uc0\u25968 \u23383 \u20998 \u31867 \u65306 </div>\
+            <div id="numbersStats" class="stats-container"></div>\
+            \
+            <div id="conversionResultContainer" class="conversion-result hidden">\
+                <div class="conversion-header">\
+                    <span>\uc0\u36716 \u25442 \u32467 \u26524 </span>\
+                    <div>\
+                        <button class="toggle-btn" onclick="toggleConversionResult()">\uc0\u38544 \u34255 </button>\
+                        <button class="copy-btn" onclick="copyConversionResult()">\uc0\u22797 \u21046 \u32467 \u26524 </button>\
+                    </div>\
+                </div>\
+                <div id="conversionResult" class="conversion-content"></div>\
+                <div id="totalAmount" class="summary"></div>\
+                <div class="conversion-actions">\
+                    <button class="copy-btn" onclick="copyConversionResult()">\uc0\u22797 \u21046 \u20840 \u37096 \u32467 \u26524 </button>\
+                </div>\
+            </div>\
+            \
+            <div class="optimized-solution">\
+                <div class="optimized-header">\uc0\u26234 \u33021 \u36716 \u20986 \u26041 \u26696 </div>\
+                <div id="optimizedSolution"></div>\
+                \
+                <div class="financial-summary">\
+                    <div class="financial-row">\
+                        <span>\uc0\u24635 \u38144 \u21806 \u39069 \u65306 </span>\
+                        <span id="totalSales" class="highlight">0\uc0\u31859 </span>\
+                    </div>\
+                    <div class="financial-row">\
+                        <span>\uc0\u36716 \u20986 \u37329 \u39069 \u65306 </span>\
+                        <span id="totalTransferred" class="danger">0\uc0\u31859 </span>\
+                    </div>\
+                    <div class="financial-row">\
+                        <span>\uc0\u20445 \u30041 \u37329 \u39069 \u65306 </span>\
+                        <span id="totalRetained" class="safe">0\uc0\u31859 </span>\
+                    </div>\
+                    <div class="financial-row">\
+                        <span>\uc0\u26368 \u39640 \u36180 \u20184 \u65306 </span>\
+                        <span id="maxPayout" class="danger">0\uc0\u31859 </span>\
+                    </div>\
+                    <div id="profitLossSummary" class="profit-loss"></div>\
+                </div>\
+            </div>\
+        </div>\
+        \
+        <div id="fullPayout" class="tab-content">\
+            <div class="summary">\
+                <div class="summary-row">\
+                    <span>\uc0\u24635 \u38144 \u21806 \u39069 \u65306 </span>\
+                    <span id="fullTotalSales" class="highlight">0\uc0\u31859 </span>\
+                </div>\
+                <div class="summary-row">\
+                    <span>\uc0\u38144 \u21806 \u25968 \u23383 \u65306 </span>\
+                    <span id="fullNumberCount">0\uc0\u20010 </span>\
+                </div>\
+                <div class="summary-row">\
+                    <span>\uc0\u26410 \u38144 \u21806 \u25968 \u23383 \u65306 </span>\
+                    <span id="unsoldNumberCount">49\uc0\u20010 </span>\
+                </div>\
+            </div>\
+            \
+            <div class="optimized-solution">\
+                <div class="optimized-header">\uc0\u22266 \u23450 \u36716 \u20986 \u21518 \u36180 \u20184 \u20998 \u26512 </div>\
+                <div class="strategy-item">\
+                    <b>\uc0\u36180 \u20184 \u26041 \u26696 </b>\
+                </div>\
+                <div class="strategy-detail">\
+                    \uc0\u22522 \u20110 \u22266 \u23450 \u36716 \u20986 \u21518 \u30340 \u20445 \u30041 \u37329 \u39069 \u25353 1:47\u20493 \u36180 \u20184 \
+                </div>\
+                \
+                <div class="financial-summary">\
+                    <div class="financial-row">\
+                        <span>\uc0\u24635 \u38144 \u21806 \u39069 \u65306 </span>\
+                        <span id="fullPayoutTotalSales">0\uc0\u31859 </span>\
+                    </div>\
+                    <div class="financial-row">\
+                        <span>\uc0\u36716 \u20986 \u37329 \u39069 \u65306 </span>\
+                        <span id="fullPayoutTransferred">0\uc0\u31859 </span>\
+                    </div>\
+                    <div class="financial-row">\
+                        <span>\uc0\u20445 \u30041 \u37329 \u39069 \u65306 </span>\
+                        <span id="fullPayoutRetained">0\uc0\u31859 </span>\
+                    </div>\
+                    <div class="financial-row">\
+                        <span>\uc0\u26368 \u39640 \u36180 \u20184 \u37329 \u39069 \u65306 </span>\
+                        <span id="fullPayoutMax" class="danger">0\uc0\u31859 </span>\
+                    </div>\
+                    <div class="financial-row">\
+                        <span>\uc0\u26368 \u22823 \u30408 \u21033 \u37329 \u39069 \u65306 </span>\
+                        <span id="fullPayoutMaxProfit" class="safe">0\uc0\u31859 </span>\
+                    </div>\
+                    <div class="financial-row">\
+                        <span>\uc0\u26368 \u22823 \u20111 \u25439 \u37329 \u39069 \u65306 </span>\
+                        <span id="fullPayoutMaxLoss" class="danger">0\uc0\u31859 </span>\
+                    </div>\
+                </div>\
+            </div>\
+            \
+            <div class="optimized-solution">\
+                <div class="optimized-header">\uc0\u36130 \u21153 \u22823 \u25968 \u25454 \u32479 \u35745 \u27861 </div>\
+                <div class="strategy-item">\
+                    <b>\uc0\u26368 \u20248 \u36180 \u20184 \u26041 \u26696 </b>\
+                </div>\
+                <div class="strategy-detail">\
+                    \uc0\u26681 \u25454 \u38144 \u21806 \u24635 \u39069 \u21644 \u36180 \u20184 \u20493 \u25968 \u35745 \u31639 \u26368 \u20248 \u36180 \u20184 \u37329 \u39069 \u65292 \u20445 \u35777 \u20111 \u25439 \u26368 \u23567 \u21270 \u12289 \u30408 \u21033 \u26368 \u22823 \u21270 \
+                </div>\
+                <div class="financial-summary">\
+                    <div class="financial-row">\
+                        <span>\uc0\u24635 \u38144 \u21806 \u39069 \u65306 </span>\
+                        <span id="optimalTotalSales">0\uc0\u31859 </span>\
+                    </div>\
+                    <div class="financial-row">\
+                        <span>\uc0\u26368 \u20248 \u36180 \u20184 \u37329 \u39069 \u65306 </span>\
+                        <span id="optimalPayout" class="highlight">0\uc0\u31859 </span>\
+                    </div>\
+                    <div class="financial-row">\
+                        <span>\uc0\u26368 \u22823 \u21487 \u33021 \u30408 \u21033 \u65306 </span>\
+                        <span id="optimalMaxProfit" class="safe">0\uc0\u31859 </span>\
+                    </div>\
+                    <div class="financial-row">\
+                        <span>\uc0\u26368 \u22823 \u21487 \u33021 \u20111 \u25439 \u65306 </span>\
+                        <span id="optimalMaxLoss" class="danger">0\uc0\u31859 </span>\
+                    </div>\
+                    <div class="financial-row">\
+                        <span>\uc0\u30408 \u21033 \u27010 \u29575 \u65306 </span>\
+                        <span id="optimalWinRate" class="safe">0%</span>\
+                    </div>\
+                </div>\
+            </div>\
+        </div>\
+    </div>\
+\
+    <div id="copySuccess" class="copy-success">\uc0\u24050 \u22797 \u21046 \u21040 \u21098 \u36148 \u26495 </div>\
+\
+    <script>\
+        // \uc0\u31995 \u32479 \u37197 \u32622 \
+        const PAYOUT_RATIO = 47;\
+        const MIN_TRANSFER = 10;\
+        \
+        // \uc0\u20027 \u22788 \u29702 \u20989 \u25968 \
+        function processSalesData() \{\
+            try \{\
+                const salesData = document.getElementById('salesData').value.trim();\
+                if (!salesData) \{\
+                    alert('\uc0\u35831 \u36755 \u20837 \u38144 \u21806 \u25968 \u25454 ');\
+                    return;\
+                \}\
+                \
+                const salesStats = analyzeSalesData(salesData);\
+                const fixedTransferResults = analyzeAndDisplayResults(salesStats);\
+                analyzeFullPayoutResults(salesStats, fixedTransferResults);\
+                \
+                // \uc0\u26174 \u31034 \u36716 \u25442 \u32467 \u26524 \
+                displayConversionResult(salesData);\
+            \} catch (error) \{\
+                alert('\uc0\u22788 \u29702 \u25968 \u25454 \u26102 \u20986 \u38169 : ' + error.message);\
+                console.error(error);\
+            \}\
+        \}\
+\
+        // \uc0\u20999 \u25442 \u26631 \u31614 \u39029 \
+        function switchTab(tabId) \{\
+            document.querySelectorAll('.tab').forEach(tab => \{\
+                tab.classList.remove('active');\
+            \});\
+            document.querySelectorAll('.tab-content').forEach(content => \{\
+                content.classList.remove('active');\
+            \});\
+            \
+            document.querySelector(`.tab[onclick="switchTab('$\{tabId\}')"]`).classList.add('active');\
+            document.getElementById(tabId).classList.add('active');\
+        \}\
+\
+        // \uc0\u26174 \u31034 /\u38544 \u34255 \u36716 \u25442 \u32467 \u26524 \
+        function toggleConversionResult() \{\
+            const container = document.getElementById('conversionResultContainer');\
+            const btn = document.querySelector('.conversion-header .toggle-btn');\
+            \
+            if (container.classList.contains('hidden')) \{\
+                container.classList.remove('hidden');\
+                btn.textContent = '\uc0\u38544 \u34255 ';\
+            \} else \{\
+                container.classList.add('hidden');\
+                btn.textContent = '\uc0\u26174 \u31034 ';\
+            \}\
+        \}\
+\
+        // \uc0\u22797 \u21046 \u36716 \u25442 \u32467 \u26524 \
+        function copyConversionResult() \{\
+            const resultContent = document.getElementById('conversionResult').textContent;\
+            const totalAmount = document.getElementById('totalAmount').textContent;\
+            const textToCopy = resultContent + '\\n' + totalAmount;\
+            \
+            navigator.clipboard.writeText(textToCopy).then(() => \{\
+                showCopySuccess();\
+            \}).catch(err => \{\
+                console.error('\uc0\u22797 \u21046 \u22833 \u36133 :', err);\
+            \});\
+        \}\
+\
+        // \uc0\u38144 \u21806 \u25968 \u25454 \u20998 \u26512  - \u20351 \u29992 \u26032 \u30340 \u35782 \u21035 \u36923 \u36753 \
+        function analyzeSalesData(data) \{\
+            const salesStats = \{\};\
+            // \uc0\u21021 \u22987 \u21270 \u25152 \u26377 \u25968 \u23383 (01-49)\u30340 \u38144 \u21806 \u37329 \u39069 \u20026 0\
+            for (let i = 1; i <= 49; i++) salesStats[i] = 0;\
+\
+            const chineseToNumber = \{\
+                '\uc0\u19968 ': 1, '\u20108 ': 2, '\u19977 ': 3, '\u22235 ': 4, '\u20116 ': 5,\
+                '\uc0\u20845 ': 6, '\u19971 ': 7, '\u20843 ': 8, '\u20061 ': 9, '\u21313 ': 10\
+            \};\
+            \
+            // \uc0\u39044 \u22788 \u29702 \u65306 \u26367 \u25442 \u20013 \u25991 \u26631 \u28857 \u65292 \u20445 \u30041 \u33521 \u25991 \u26631 \u28857 \
+            const normalizedInput = data.replace(/[\uc0\u65292 \u12290 ]/g, '').replace(/\\s+/g, ' ');\
+            const lines = normalizedInput.split('\\n');\
+            \
+            // \uc0\u25913 \u36827 \u30340 \u27491 \u21017 \u34920 \u36798 \u24335 \u65292 \u35782 \u21035 \u21508 \u31181 \u26684 \u24335 \u65288 \u21253 \u25324 ".\u21508 10"\u65289 \
+            const pattern = /((?:\\d+[.,\\-\\s]*)+\\d+)[\\s.,]*(?:\uc0\u21508 |\u19968 \u20010 )\\s*([\u20116 \u20845 \u19971 \u20843 \u20061 \u21313 \\d]+)(?=\\D|$)/g;\
+            \
+            for (let line of lines) \{\
+                line = line.trim();\
+                if (line === '') continue;\
+                \
+                let lastIndex = 0;\
+                let match;\
+                \
+                pattern.lastIndex = 0;\
+                \
+                while ((match = pattern.exec(line)) !== null) \{\
+                    const numbersStr = match[1].trim();\
+                    const amountStr = match[2];\
+                    \
+                    try \{\
+                        // \uc0\u22788 \u29702 \u25968 \u23383 \u37096 \u20998 \u30340 \u21508 \u31181 \u20998 \u38548 \u31526 \
+                        const normalizedNumbers = numbersStr.replace(/[.,\\s]/g, '-').replace(/-+/g, '-');\
+                        const numbers = normalizedNumbers.split('-').filter(n => \{\
+                            const num = n.trim();\
+                            return num !== '' && !isNaN(num);\
+                        \});\
+                        \
+                        if (numbers.length === 0) continue;\
+                        \
+                        // \uc0\u22788 \u29702 \u37329 \u39069 \u65288 \u25903 \u25345 \u20013 \u25991 \u25968 \u23383 \u65289 \
+                        let amount = parseInt(amountStr);\
+                        if (isNaN(amount)) \{\
+                            amount = chineseToNumber[amountStr] || 0;\
+                            if (amount === 0) continue;\
+                        \}\
+                        \
+                        // \uc0\u20026 \u27599 \u20010 \u25968 \u23383 \u28155 \u21152 \u37329 \u39069 \
+                        numbers.forEach(num => \{\
+                            const n = parseInt(num);\
+                            if (n >= 1 && n <= 49) \{\
+                                salesStats[n] += amount;\
+                            \}\
+                        \});\
+                        \
+                        lastIndex = pattern.lastIndex;\
+                    \} catch (e) \{\
+                        console.error('\uc0\u35299 \u26512 \u38169 \u35823 :', e);\
+                    \}\
+                \}\
+            \}\
+            \
+            return salesStats;\
+        \}\
+\
+        // \uc0\u26174 \u31034 \u22797 \u21046 \u25104 \u21151 \u25552 \u31034 \
+        function showCopySuccess() \{\
+            const copySuccess = document.getElementById('copySuccess');\
+            copySuccess.style.display = 'block';\
+            setTimeout(() => \{\
+                copySuccess.style.display = 'none';\
+            \}, 1500);\
+        \}\
+\
+        // \uc0\u22797 \u21046 \u25968 \u23383 \u21040 \u21098 \u36148 \u26495 \
+        function copyNumbers(numbers) \{\
+            const numbersStr = numbers.map(num => num.toString().padStart(2, '0')).join('  ');\
+            navigator.clipboard.writeText(numbersStr).then(() => \{\
+                showCopySuccess();\
+            \}).catch(err => \{\
+                console.error('\uc0\u22797 \u21046 \u22833 \u36133 :', err);\
+            \});\
+        \}\
+\
+        // \uc0\u21313 \u20301 \u25972 \u25968 \u33293 \u20837 \
+        function roundToTen(num) \{\
+            return Math.round(num / 10) * 10;\
+        \}\
+\
+        // \uc0\u25353 \u37329 \u39069 \u20998 \u32452 \u25968 \u23383 \u24182 \u29983 \u25104 \u36716 \u20986 \u26041 \u26696 \u25991 \u26412 \
+        function generateTransferText(numbers, transferAmounts) \{\
+            const groups = \{\};\
+            \
+            numbers.forEach((num, index) => \{\
+                const transferAmount = transferAmounts[index];\
+                if (!groups[transferAmount]) \{\
+                    groups[transferAmount] = [];\
+                \}\
+                groups[transferAmount].push(num.number);\
+            \});\
+            \
+            let result = '';\
+            for (const [amount, nums] of Object.entries(groups)) \{\
+                if (nums.length > 1) \{\
+                    result += nums.map(n => n.toString().padStart(2, '0')).join(' ') + `\uc0\u21508 $\{amount\}\u31859  `;\
+                \} else \{\
+                    result += nums[0].toString().padStart(2, '0') + `\uc0\u21508 $\{amount\}\u31859  `;\
+                \}\
+            \}\
+            \
+            return result.trim();\
+        \}\
+\
+        // \uc0\u22797 \u21046 \u25991 \u26412 \u21040 \u21098 \u36148 \u26495 \
+        function copyTextToClipboard(text) \{\
+            navigator.clipboard.writeText(text).then(() => \{\
+                showCopySuccess();\
+            \}).catch(err => \{\
+                console.error('\uc0\u22797 \u21046 \u22833 \u36133 :', err);\
+            \});\
+        \}\
+\
+        // \uc0\u35745 \u31639 \u26368 \u20248 \u36716 \u20986 \u37329 \u39069 \u65288 \u22266 \u23450 \u27604 \u20363 \u65289 \
+        function calculateOptimalTransfer(numbers, totalSales) \{\
+            let totalTransferred = 0;\
+            let totalRetained = 0;\
+            let maxPayout = 0;\
+            const transferAmounts = [];\
+            const retainedAmounts = [];\
+            \
+            // \uc0\u21028 \u26029 \u26159 \u21542 \u20026 \u20302 \u38144 \u21806 \u39069 \u27169 \u24335 \u65288 \u20302 \u20110 3000\u65289 \
+            const isLowSalesMode = totalSales < 3000;\
+            \
+            numbers.forEach(num => \{\
+                let transferAmount = 0;\
+                let retainAmount = num.amount;\
+                \
+                // \uc0\u39640 \u39118 \u38505 \u25968 \u23383 \u65288 \u37329 \u39069 \u8805 200\u65289 \u36716 \u20986 50%\
+                if (num.amount >= 200) \{\
+                    transferAmount = Math.max(MIN_TRANSFER, roundToTen(num.amount * 0.5));\
+                \} \
+                // \uc0\u20013 \u39118 \u38505 \u25968 \u23383 \u65288 \u22312 \u20302 \u38144 \u21806 \u39069 \u27169 \u24335 \u19979 60-199\u20026 \u20013 \u39118 \u38505 \u65292 \u21542 \u21017 100-199\u20026 \u20013 \u39118 \u38505 \u65289 \
+                else if ((isLowSalesMode && num.amount >= 60) || (!isLowSalesMode && num.amount >= 100)) \{\
+                    transferAmount = Math.max(MIN_TRANSFER, roundToTen(num.amount * 0.4));\
+                \}\
+                \
+                // \uc0\u30830 \u20445 \u36716 \u20986 \u37329 \u39069 \u19981 \u36229 \u36807 \u21407 \u37329 \u39069 \
+                transferAmount = Math.min(transferAmount, num.amount - 1);\
+                retainAmount = num.amount - transferAmount;\
+                \
+                transferAmounts.push(transferAmount);\
+                retainedAmounts.push(retainAmount);\
+                totalTransferred += transferAmount;\
+                totalRetained += retainAmount;\
+                \
+                const payout = retainAmount * PAYOUT_RATIO;\
+                if (payout > maxPayout) \{\
+                    maxPayout = payout;\
+                \}\
+            \});\
+            \
+            return \{\
+                transferAmounts,\
+                retainedAmounts,\
+                totalTransferred,\
+                totalRetained,\
+                maxPayout\
+            \};\
+        \}\
+\
+        // \uc0\u35745 \u31639 \u26368 \u20248 \u36180 \u20184 \u37329 \u39069 \u65288 \u36130 \u21153 \u22823 \u25968 \u25454 \u32479 \u35745 \u27861 \u65289 \
+        function calculateOptimalPayout(totalSales) \{\
+            // \uc0\u35745 \u31639 \u20844 \u24335 : \u26368 \u20248 \u36180 \u20184 \u37329 \u39069  = \u24635 \u38144 \u21806 \u39069  / (1 + 1/\u36180 \u20184 \u20493 \u25968 )\
+            const optimalPayout = Math.round(totalSales / (1 + 1/PAYOUT_RATIO));\
+            \
+            // \uc0\u35745 \u31639 \u26368 \u22823 \u30408 \u21033 \u21644 \u26368 \u22823 \u20111 \u25439 \
+            const maxProfit = totalSales - optimalPayout;\
+            const maxLoss = optimalPayout * PAYOUT_RATIO - totalSales;\
+            \
+            // \uc0\u35745 \u31639 \u30408 \u21033 \u27010 \u29575  (\u31616 \u21270 \u35745 \u31639 )\
+            const winRate = Math.round((1 - 1/PAYOUT_RATIO) * 100);\
+            \
+            return \{\
+                optimalPayout,\
+                maxProfit,\
+                maxLoss,\
+                winRate\
+            \};\
+        \}\
+\
+        // \uc0\u26174 \u31034 \u36716 \u25442 \u32467 \u26524 \
+        function displayConversionResult(inputData) \{\
+            const chineseToNumber = \{\
+                '\uc0\u19968 ': 1, '\u20108 ': 2, '\u19977 ': 3, '\u22235 ': 4, '\u20116 ': 5,\
+                '\uc0\u20845 ': 6, '\u19971 ': 7, '\u20843 ': 8, '\u20061 ': 9, '\u21313 ': 10\
+            \};\
+            \
+            // \uc0\u39044 \u22788 \u29702 \u65306 \u26367 \u25442 \u20013 \u25991 \u26631 \u28857 \u65292 \u20445 \u30041 \u33521 \u25991 \u26631 \u28857 \
+            const normalizedInput = inputData.replace(/[\uc0\u65292 \u12290 ]/g, '').replace(/\\s+/g, ' ');\
+            const lines = normalizedInput.split('\\n');\
+            \
+            let resultWithTotal = '';\
+            let resultOriginal = '';\
+            let totalAmount = 0;\
+            \
+            // \uc0\u25913 \u36827 \u30340 \u27491 \u21017 \u34920 \u36798 \u24335 \u65292 \u35782 \u21035 \u21508 \u31181 \u26684 \u24335 \u65288 \u21253 \u25324 ".\u21508 10"\u65289 \
+            const pattern = /((?:\\d+[.,\\-\\s]*)+\\d+)[\\s.,]*(?:\uc0\u21508 |\u19968 \u20010 )\\s*([\u20116 \u20845 \u19971 \u20843 \u20061 \u21313 \\d]+)(?=\\D|$)/g;\
+            \
+            for (let line of lines) \{\
+                line = line.trim();\
+                if (line === '') \{\
+                    resultWithTotal += '\\n';\
+                    resultOriginal += '\\n';\
+                    continue;\
+                \}\
+                \
+                let matchesFound = false;\
+                let lastIndex = 0;\
+                let match;\
+                \
+                pattern.lastIndex = 0;\
+                \
+                while ((match = pattern.exec(line)) !== null) \{\
+                    matchesFound = true;\
+                    const numbersStr = match[1].trim();\
+                    const amountStr = match[2];\
+                    \
+                    try \{\
+                        // \uc0\u22788 \u29702 \u25968 \u23383 \u37096 \u20998 \u30340 \u21508 \u31181 \u20998 \u38548 \u31526 \
+                        const normalizedNumbers = numbersStr.replace(/[.,\\s]/g, '-').replace(/-+/g, '-');\
+                        const numbers = normalizedNumbers.split('-').filter(n => \{\
+                            const num = n.trim();\
+                            return num !== '' && !isNaN(num);\
+                        \});\
+                        \
+                        if (numbers.length === 0) \{\
+                            throw new Error("\uc0\u27809 \u26377 \u26377 \u25928 \u30340 \u25968 \u23383 ");\
+                        \}\
+                        \
+                        // \uc0\u22788 \u29702 \u37329 \u39069 \u65288 \u25903 \u25345 \u20013 \u25991 \u25968 \u23383 \u65289 \
+                        let amount = parseInt(amountStr);\
+                        if (isNaN(amount)) \{\
+                            amount = chineseToNumber[amountStr] || 0;\
+                            if (amount === 0) \{\
+                                throw new Error("\uc0\u37329 \u39069 \u19981 \u26159 \u26377 \u25928 \u25968 \u23383 ");\
+                            \}\
+                        \}\
+                        \
+                        // \uc0\u35745 \u31639 \u24635 \u37329 \u39069 \
+                        const groupAmount = amount * numbers.length;\
+                        totalAmount += groupAmount;\
+                        \
+                        // \uc0\u29983 \u25104 \u24102 \u24635 \u37329 \u39069 \u30340 \u26684 \u24335 \
+                        resultWithTotal += `$\{numbers.join('-')\} \uc0\u21508  $\{amount\} (\u26412 \u32452 \u37329 \u39069 : $\{groupAmount\})\\n`;\
+                        // \uc0\u29983 \u25104 \u21407 \u22987 \u37329 \u39069 \u26684 \u24335 \u65288 \u20445 \u30041 \u21407 \u22987 \u20998 \u38548 \u31526 \u65289 \
+                        const originalSeparator = numbersStr.match(/[^\\d]/)?.[0] || ',';\
+                        resultOriginal += `$\{numbers.join(originalSeparator)\} \uc0\u21508  $\{amount\}\\n`;\
+                        \
+                    \} catch (e) \{\
+                        const errorMsg = `<span class="error">[\uc0\u38169 \u35823 ] $\{match[0]\} ($\{e.message\})</span>\\n`;\
+                        resultWithTotal += errorMsg;\
+                        resultOriginal += errorMsg;\
+                    \}\
+                    \
+                    lastIndex = pattern.lastIndex;\
+                \}\
+                \
+                if (!matchesFound) \{\
+                    const errorMsg = `<span class="error">[\uc0\u26410 \u35782 \u21035 ] $\{line\}</span>\\n`;\
+                    resultWithTotal += errorMsg;\
+                    resultOriginal += errorMsg;\
+                \} else if (lastIndex < line.length) \{\
+                    // \uc0\u23581 \u35797 \u22788 \u29702 \u21097 \u20313 \u37096 \u20998 \
+                    const remainingText = line.substring(lastIndex).trim();\
+                    if (remainingText) \{\
+                        const remainingMatch = remainingText.match(/^(\\d+[.,\\-\\s]*\\d+)[\\s.,]*(?:\uc0\u21508 |\u19968 \u20010 )\\s*([\u20116 \u20845 \u19971 \u20843 \u20061 \u21313 \\d]+)/);\
+                        if (remainingMatch) \{\
+                            // \uc0\u22914 \u26524 \u26159 \u26032 \u30340 \u25968 \u23383 \u32452 \u65292 \u37325 \u26032 \u22788 \u29702 \
+                            pattern.lastIndex = lastIndex;\
+                            continue;\
+                        \} else \{\
+                            const errorMsg = `<span class="error">[\uc0\u37096 \u20998 \u26410 \u35782 \u21035 ] $\{remainingText\}</span>\\n`;\
+                            resultWithTotal += errorMsg;\
+                            resultOriginal += errorMsg;\
+                        \}\
+                    \}\
+                \}\
+            \}\
+            \
+            // \uc0\u26174 \u31034 \u32467 \u26524 \
+            document.getElementById('conversionResult').innerHTML = resultWithTotal;\
+            document.getElementById('totalAmount').textContent = `\uc0\u24635 \u37329 \u39069 : $\{totalAmount\}`;\
+            document.getElementById('conversionResultContainer').classList.remove('hidden');\
+        \}\
+\
+        // \uc0\u20998 \u26512 \u24182 \u26174 \u31034 \u22266 \u23450 \u36716 \u20986 \u32467 \u26524 \
+        function analyzeAndDisplayResults(stats) \{\
+            const resultsDiv = document.getElementById('results');\
+            const summaryDiv = document.getElementById('summary');\
+            const numbersStatsDiv = document.getElementById('numbersStats');\
+            const optimizedSolution = document.getElementById('optimizedSolution');\
+            \
+            // \uc0\u35745 \u31639 \u24635 \u38144 \u21806 \u39069 \
+            let totalSales = 0;\
+            const allNumbers = [];\
+            const highRiskNumbers = [];\
+            const mediumRiskNumbers = [];\
+            const safeNumbers = [];\
+            const unsoldNumbers = [];\
+            \
+            for (let num = 1; num <= 49; num++) \{\
+                if (stats[num] > 0) \{\
+                    totalSales += stats[num];\
+                    const numberObj = \{\
+                        number: num,\
+                        amount: stats[num]\
+                    \};\
+                    allNumbers.push(numberObj);\
+                    \
+                    // \uc0\u20998 \u31867 \u25968 \u23383 \
+                    if (stats[num] >= 200) \{\
+                        highRiskNumbers.push(numberObj);\
+                    \} else if ((totalSales < 3000 && stats[num] >= 60) || (totalSales >= 3000 && stats[num] >= 100)) \{\
+                        mediumRiskNumbers.push(numberObj);\
+                    \} else \{\
+                        safeNumbers.push(numberObj);\
+                    \}\
+                \} else \{\
+                    unsoldNumbers.push(num);\
+                \}\
+            \}\
+            \
+            // \uc0\u25353 \u37329 \u39069 \u25490 \u24207 \
+            allNumbers.sort((a, b) => b.amount - a.amount);\
+            highRiskNumbers.sort((a, b) => b.amount - a.amount);\
+            mediumRiskNumbers.sort((a, b) => b.amount - a.amount);\
+            safeNumbers.sort((a, b) => b.amount - a.amount);\
+            \
+            // \uc0\u35745 \u31639 \u26368 \u20248 \u36716 \u20986 \u26041 \u26696 \
+            const \{ transferAmounts, retainedAmounts, totalTransferred, totalRetained, maxPayout \} = \
+                calculateOptimalTransfer(allNumbers, totalSales);\
+            \
+            // \uc0\u35745 \u31639 \u20928 \u30408 \u20111 \
+            const maxLoss = maxPayout - totalRetained;\
+            const netProfit = totalTransferred - maxLoss;\
+            \
+            // \uc0\u26174 \u31034 \u32467 \u26524 \u21306 \u22495 \
+            resultsDiv.classList.remove('hidden');\
+            \
+            // \uc0\u26174 \u31034 \u25688 \u35201 \
+            summaryDiv.innerHTML = `\
+                <div class="summary-row">\
+                    <span>\uc0\u24635 \u38144 \u21806 \u39069 \u65306 </span>\
+                    <span class="highlight">$\{totalSales\}\uc0\u31859 </span>\
+                </div>\
+                <div class="summary-row">\
+                    <span>\uc0\u38144 \u21806 \u25968 \u23383 \u65306 </span>\
+                    <span>$\{allNumbers.length\}\uc0\u20010 </span>\
+                </div>\
+                <div class="summary-row">\
+                    <span>\uc0\u26410 \u38144 \u21806 \u25968 \u23383 \u65306 </span>\
+                    <span>$\{unsoldNumbers.length\}\uc0\u20010 </span>\
+                </div>\
+                <div class="summary-row">\
+                    <span>\uc0\u39640 \u39118 \u38505 (\u8805 200\u31859 )\u65306 </span>\
+                    <span>$\{highRiskNumbers.length\}\uc0\u20010 </span>\
+                </div>\
+                <div class="summary-row">\
+                    <span>\uc0\u20013 \u39118 \u38505 ($\{totalSales < 3000 ? '60-199' : '100-199'\}\u31859 )\u65306 </span>\
+                    <span>$\{mediumRiskNumbers.length\}\uc0\u20010 </span>\
+                </div>\
+                <div class="summary-row">\
+                    <span>\uc0\u23433 \u20840 (<$\{totalSales < 3000 ? 60 : 100\}\u31859 )\u65306 </span>\
+                    <span>$\{safeNumbers.length\}\uc0\u20010 </span>\
+                </div>\
+            `;\
+            \
+            // \uc0\u26174 \u31034 \u25968 \u23383 \u32479 \u35745 \u65288 \u25353 \u39118 \u38505 \u31561 \u32423 \u20998 \u32452 \u65289 \
+            numbersStatsDiv.innerHTML = '';\
+            \
+            // \uc0\u39640 \u39118 \u38505 \u25968 \u23383 \u32452 \
+            if (highRiskNumbers.length > 0) \{\
+                const groupDiv = document.createElement('div');\
+                groupDiv.className = 'amount-group';\
+                \
+                const header = document.createElement('div');\
+                header.className = 'amount-header high-risk-header';\
+                header.innerHTML = `\
+                    <span>\uc0\u39640 \u39118 \u38505 (\u8805 200\u31859 )</span>\
+                    <span>\
+                        $\{highRiskNumbers.length\}\uc0\u20010 \
+                        <button class="copy-btn" onclick="copyNumbers([$\{highRiskNumbers.map(item => item.number).join(',')\}])">\uc0\u22797 \u21046 </button>\
+                        <button class="copy-all-btn" onclick="copyTransferText([$\{highRiskNumbers.map(item => item.number).join(',')\}], [$\{highRiskNumbers.map(item => Math.max(MIN_TRANSFER, roundToTen(item.amount * 0.5))).join(',')\}])">\uc0\u36716 \u20986 </button>\
+                    </span>\
+                `;\
+                \
+                const grid = document.createElement('div');\
+                grid.className = 'numbers-grid';\
+                \
+                highRiskNumbers.forEach((item, index) => \{\
+                    const transferAmount = Math.max(MIN_TRANSFER, roundToTen(item.amount * 0.5));\
+                    const retainAmount = item.amount - transferAmount;\
+                    const itemDiv = document.createElement('div');\
+                    itemDiv.className = 'number-item high-risk-item';\
+                    itemDiv.innerHTML = `\
+                        <span class="number">$\{item.number.toString().padStart(2, '0')\}</span>\
+                        <span class="amount">$\{item.amount\}\uc0\u31859  (\u36716 $\{transferAmount\})</span>\
+                    `;\
+                    grid.appendChild(itemDiv);\
+                \});\
+\
+                const totalDiv = document.createElement('div');\
+                totalDiv.className = 'group-total high-risk-total';\
+                totalDiv.textContent = `\uc0\u24635 \u37329 \u39069 : $\{highRiskNumbers.reduce((sum, item) => sum + item.amount, 0)\}\u31859 `;\
+                \
+                groupDiv.appendChild(header);\
+                groupDiv.appendChild(grid);\
+                groupDiv.appendChild(totalDiv);\
+                numbersStatsDiv.appendChild(groupDiv);\
+            \}\
+            \
+            // \uc0\u20013 \u39118 \u38505 \u25968 \u23383 \u32452 \
+            if (mediumRiskNumbers.length > 0) \{\
+                const groupDiv = document.createElement('div');\
+                groupDiv.className = 'amount-group';\
+                \
+                const header = document.createElement('div');\
+                header.className = 'amount-header medium-risk-header';\
+                header.innerHTML = `\
+                    <span>\uc0\u20013 \u39118 \u38505 ($\{totalSales < 3000 ? '60-199' : '100-199'\}\u31859 )</span>\
+                    <span>\
+                        $\{mediumRiskNumbers.length\}\uc0\u20010 \
+                        <button class="copy-btn" onclick="copyNumbers([$\{mediumRiskNumbers.map(item => item.number).join(',')\}])">\uc0\u22797 \u21046 </button>\
+                        <button class="copy-all-btn" onclick="copyTransferText([$\{mediumRiskNumbers.map(item => item.number).join(',')\}], [$\{mediumRiskNumbers.map(item => Math.max(MIN_TRANSFER, roundToTen(item.amount * 0.4))).join(',')\}])">\uc0\u36716 \u20986 </button>\
+                    </span>\
+                `;\
+                \
+                const grid = document.createElement('div');\
+                grid.className = 'numbers-grid';\
+                \
+                mediumRiskNumbers.forEach((item, index) => \{\
+                    const transferAmount = Math.max(MIN_TRANSFER, roundToTen(item.amount * 0.4));\
+                    const retainAmount = item.amount - transferAmount;\
+                    const itemDiv = document.createElement('div');\
+                    itemDiv.className = 'number-item medium-risk-item';\
+                    itemDiv.innerHTML = `\
+                        <span class="number">$\{item.number.toString().padStart(2, '0')\}</span>\
+                        <span class="amount">$\{item.amount\}\uc0\u31859  (\u36716 $\{transferAmount\})</span>\
+                    `;\
+                    grid.appendChild(itemDiv);\
+                \});\
+\
+                const totalDiv = document.createElement('div');\
+                totalDiv.className = 'group-total medium-risk-total';\
+                totalDiv.textContent = `\uc0\u24635 \u37329 \u39069 : $\{mediumRiskNumbers.reduce((sum, item) => sum + item.amount, 0)\}\u31859 `;\
+                \
+                groupDiv.appendChild(header);\
+                groupDiv.appendChild(grid);\
+                groupDiv.appendChild(totalDiv);\
+                numbersStatsDiv.appendChild(groupDiv);\
+            \}\
+            \
+            // \uc0\u23433 \u20840 \u25968 \u23383 \u32452 \
+            if (safeNumbers.length > 0) \{\
+                const groupDiv = document.createElement('div');\
+                groupDiv.className = 'amount-group';\
+                \
+                const header = document.createElement('div');\
+                header.className = 'amount-header safe-header';\
+                header.innerHTML = `\
+                    <span>\uc0\u23433 \u20840 (<$\{totalSales < 3000 ? 60 : 100\}\u31859 )</span>\
+                    <span>\
+                        $\{safeNumbers.length\}\uc0\u20010 \
+                        <button class="copy-btn" onclick="copyNumbers([$\{safeNumbers.map(item => item.number).join(',')\}])">\uc0\u22797 \u21046 </button>\
+                    </span>\
+                `;\
+                \
+                const grid = document.createElement('div');\
+                grid.className = 'numbers-grid';\
+                \
+                safeNumbers.forEach((item, index) => \{\
+                    const transferAmount = 0;\
+                    const retainAmount = item.amount;\
+                    const itemDiv = document.createElement('div');\
+                    itemDiv.className = 'number-item safe-item';\
+                    itemDiv.innerHTML = `\
+                        <span class="number">$\{item.number.toString().padStart(2, '0')\}</span>\
+                        <span class="amount">$\{item.amount\}\uc0\u31859 </span>\
+                    `;\
+                    grid.appendChild(itemDiv);\
+                \});\
+\
+                const totalDiv = document.createElement('div');\
+                totalDiv.className = 'group-total safe-total';\
+                totalDiv.textContent = `\uc0\u24635 \u37329 \u39069 : $\{safeNumbers.reduce((sum, item) => sum + item.amount, 0)\}\u31859 `;\
+                \
+                groupDiv.appendChild(header);\
+                groupDiv.appendChild(grid);\
+                groupDiv.appendChild(totalDiv);\
+                numbersStatsDiv.appendChild(groupDiv);\
+            \}\
+            \
+            // \uc0\u26410 \u38144 \u21806 \u25968 \u23383 \u32452 \
+            if (unsoldNumbers.length > 0) \{\
+                const groupDiv = document.createElement('div');\
+                groupDiv.className = 'amount-group';\
+                \
+                const header = document.createElement('div');\
+                header.className = 'amount-header unsold-header';\
+                header.innerHTML = `\
+                    <span>\uc0\u26410 \u38144 \u21806 \u25968 \u23383 </span>\
+                    <span>\
+                        $\{unsoldNumbers.length\}\uc0\u20010 \
+                        <button class="copy-btn" onclick="copyNumbers([$\{unsoldNumbers.join(',')\}])">\uc0\u22797 \u21046 </button>\
+                    </span>\
+                `;\
+                \
+                const grid = document.createElement('div');\
+                grid.className = 'numbers-grid';\
+                \
+                unsoldNumbers.forEach(num => \{\
+                    const itemDiv = document.createElement('div');\
+                    itemDiv.className = 'number-item unsold-item';\
+                    itemDiv.innerHTML = `\
+                        <span class="number">$\{num.toString().padStart(2, '0')\}</span>\
+                        <span class="amount">0\uc0\u31859 </span>\
+                    `;\
+                    grid.appendChild(itemDiv);\
+                \});\
+\
+                const totalDiv = document.createElement('div');\
+                totalDiv.className = 'group-total unsold-total';\
+                totalDiv.textContent = `\uc0\u24635 \u37329 \u39069 : 0\u31859 `;\
+                \
+                groupDiv.appendChild(header);\
+                groupDiv.appendChild(grid);\
+                groupDiv.appendChild(totalDiv);\
+                numbersStatsDiv.appendChild(groupDiv);\
+            \}\
+            \
+            // \uc0\u29983 \u25104 \u36716 \u20986 \u26041 \u26696 \
+            const transferText = generateTransferText(allNumbers, transferAmounts);\
+            let solutionHtml = `\
+                <div class="strategy-item">\
+                    <b>\uc0\u26234 \u33021 \u36716 \u20986 \u26041 \u26696 </b>\
+                    <button class="copy-btn" onclick="copyTextToClipboard('$\{transferText.replace(/'/g, "\\\\'")\}')" style="margin-left:auto;">\uc0\u22797 \u21046 \u20840 \u37096 </button>\
+                </div>\
+                <div class="strategy-detail">\
+                    \uc0\u36716 \u20986 \u31574 \u30053 \u65306 \
+                    <ul style="margin:3px 0 3px 15px;">\
+                        <li>\uc0\u8805 200\u31859 \u65306 \u36716 \u20986 50%</li>\
+                        <li>$\{totalSales < 3000 ? '60-199' : '100-199'\}\uc0\u31859 \u65306 \u36716 \u20986 40%</li>\
+                        <li><$\{totalSales < 3000 ? 60 : 100\}\uc0\u31859 \u65306 \u19981 \u36716 \u20986 </li>\
+                    </ul>\
+                </div>\
+                <div class="strategy-detail">\
+                    <div>\uc0\u24635 \u38144 \u21806 \u39069 : $\{totalSales\}\u31859 </div>\
+                    <div>\uc0\u36716 \u20986 \u37329 \u39069 : $\{totalTransferred\}\u31859 </div>\
+                    <div>\uc0\u20445 \u30041 \u37329 \u39069 : $\{totalRetained\}\u31859 </div>\
+                    <div>\uc0\u26368 \u39640 \u36180 \u20184 : $\{maxPayout\}\u31859 </div>\
+                </div>\
+            `;\
+            \
+            optimizedSolution.innerHTML = solutionHtml;\
+            \
+            // \uc0\u26356 \u26032 \u36130 \u21153 \u24635 \u32467 \
+            document.getElementById('totalSales').textContent = `$\{totalSales\}\uc0\u31859 `;\
+            document.getElementById('totalTransferred').textContent = `$\{totalTransferred\}\uc0\u31859 `;\
+            document.getElementById('totalRetained').textContent = `$\{totalRetained\}\uc0\u31859 `;\
+            document.getElementById('maxPayout').textContent = `$\{maxPayout\}\uc0\u31859 `;\
+            \
+            const profitLossDiv = document.getElementById('profitLossSummary');\
+            if (netProfit >= 0) \{\
+                profitLossDiv.className = "profit-loss net-profit";\
+                profitLossDiv.innerHTML = `\uc0\u20928 \u30408 \u21033 : $\{netProfit\}\u31859 `;\
+            \} else \{\
+                profitLossDiv.className = "profit-loss net-loss";\
+                profitLossDiv.innerHTML = `\uc0\u20928 \u20111 \u25439 : $\{-netProfit\}\u31859 `;\
+            \}\
+            \
+            // \uc0\u36820 \u22238 \u22266 \u23450 \u36716 \u20986 \u32467 \u26524 \u65292 \u29992 \u20110 \u20840 \u39069 \u36180 \u20184 \u20998 \u26512 \
+            return \{\
+                totalSales,\
+                allNumbers,\
+                transferAmounts,\
+                retainedAmounts,\
+                totalTransferred,\
+                totalRetained,\
+                maxPayout,\
+                unsoldNumbers\
+            \};\
+        \}\
+        \
+        // \uc0\u20998 \u26512 \u24182 \u26174 \u31034 \u20840 \u39069 \u36180 \u20184 \u32467 \u26524 \
+        function analyzeFullPayoutResults(stats, fixedTransferResults) \{\
+            const totalSales = fixedTransferResults.totalSales;\
+            const allNumbers = fixedTransferResults.allNumbers;\
+            const retainedAmounts = fixedTransferResults.retainedAmounts;\
+            const totalTransferred = fixedTransferResults.totalTransferred;\
+            const totalRetained = fixedTransferResults.totalRetained;\
+            const unsoldNumbers = fixedTransferResults.unsoldNumbers;\
+            \
+            // \uc0\u26356 \u26032 \u26410 \u38144 \u21806 \u25968 \u23383 \u35745 \u25968 \
+            document.getElementById('unsoldNumberCount').textContent = `$\{unsoldNumbers.length\}\uc0\u20010 `;\
+            \
+            // \uc0\u35745 \u31639 \u22522 \u20110 \u20445 \u30041 \u37329 \u39069 \u30340 \u36180 \u20184 \
+            let maxPayout = 0;\
+            let minPayout = Infinity;\
+            \
+            retainedAmounts.forEach(amount => \{\
+                const payout = amount * PAYOUT_RATIO;\
+                if (payout > maxPayout) \{\
+                    maxPayout = payout;\
+                \}\
+                if (payout < minPayout) \{\
+                    minPayout = payout;\
+                \}\
+            \});\
+            \
+            // \uc0\u35745 \u31639 \u26368 \u22823 \u30408 \u21033 \u21644 \u26368 \u22823 \u20111 \u25439 \
+            const maxProfit = totalSales - minPayout;\
+            const maxLoss = maxPayout - totalSales;\
+            \
+            // \uc0\u26356 \u26032 \u22266 \u23450 \u36716 \u20986 \u21518 \u36180 \u20184 \u20998 \u26512 \
+            document.getElementById('fullTotalSales').textContent = `$\{totalSales\}\uc0\u31859 `;\
+            document.getElementById('fullNumberCount').textContent = `$\{allNumbers.length\}\uc0\u20010 `;\
+            document.getElementById('fullPayoutTotalSales').textContent = `$\{totalSales\}\uc0\u31859 `;\
+            document.getElementById('fullPayoutTransferred').textContent = `$\{totalTransferred\}\uc0\u31859 `;\
+            document.getElementById('fullPayoutRetained').textContent = `$\{totalRetained\}\uc0\u31859 `;\
+            document.getElementById('fullPayoutMax').textContent = `$\{maxPayout\}\uc0\u31859 `;\
+            document.getElementById('fullPayoutMaxProfit').textContent = `$\{maxProfit\}\uc0\u31859 `;\
+            document.getElementById('fullPayoutMaxLoss').textContent = `$\{maxLoss\}\uc0\u31859 `;\
+            \
+            // \uc0\u35745 \u31639 \u36130 \u21153 \u22823 \u25968 \u25454 \u32479 \u35745 \u27861 \
+            const \{ optimalPayout, maxProfit: optimalMaxProfit, maxLoss: optimalMaxLoss, winRate \} = calculateOptimalPayout(totalSales);\
+            \
+            // \uc0\u26356 \u26032 \u36130 \u21153 \u22823 \u25968 \u25454 \u32479 \u35745 \u27861 \u32467 \u26524 \
+            document.getElementById('optimalTotalSales').textContent = `$\{totalSales\}\uc0\u31859 `;\
+            document.getElementById('optimalPayout').textContent = `$\{optimalPayout\}\uc0\u31859 `;\
+            document.getElementById('optimalMaxProfit').textContent = `$\{optimalMaxProfit\}\uc0\u31859 `;\
+            document.getElementById('optimalMaxLoss').textContent = `$\{optimalMaxLoss\}\uc0\u31859 `;\
+            document.getElementById('optimalWinRate').textContent = `$\{winRate\}%`;\
+        \}\
+        \
+        // \uc0\u22797 \u21046 \u36716 \u20986 \u26041 \u26696 \u25991 \u26412 \
+        function copyTransferText(numbers, transferAmounts) \{\
+            const groups = \{\};\
+            \
+            numbers.forEach((num, index) => \{\
+                const transferAmount = transferAmounts[index];\
+                if (!groups[transferAmount]) \{\
+                    groups[transferAmount] = [];\
+                \}\
+                groups[transferAmount].push(num);\
+            \});\
+            \
+            let result = '';\
+            for (const [amount, nums] of Object.entries(groups)) \{\
+                if (nums.length > 1) \{\
+                    result += nums.map(n => n.toString().padStart(2, '0')).join(' ') + `\uc0\u21508 $\{amount\}\u31859  `;\
+                \} else \{\
+                    result += nums[0].toString().padStart(2, '0') + `\uc0\u21508 $\{amount\}\u31859  `;\
+                \}\
+            \}\
+            \
+            navigator.clipboard.writeText(result.trim()).then(() => \{\
+                showCopySuccess();\
+            \}).catch(err => \{\
+                console.error('\uc0\u22797 \u21046 \u22833 \u36133 :', err);\
+            \});\
+        \}\
+    </script>\
+</body>\
+</html>}
